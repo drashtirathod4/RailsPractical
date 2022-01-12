@@ -1,0 +1,7 @@
+<h1>Create a Product</h1>
+
+<%= form_for @product do |form| %>
+  <%= form.text_field :name, placeholder: 'name' %>
+  <%= form.text_field :desc, placeholder: 'desc' %>
+  <%= form.submit %>
+<% end %>
