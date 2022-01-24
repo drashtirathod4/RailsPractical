@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :images
+  resources :authors_books
+  resources :books
+  resources :authors
   resources :products
   # root "articles#index"
   
