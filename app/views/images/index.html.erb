@@ -1,0 +1,24 @@
+<h1 align="center">Images List</h1>
+<table cellpadding="15px" border="1px" align="center">
+  <tr>
+      <td><b>Image Name</b></td>
+      <td><b>Image Type</b></td>
+      <td><b>Image Id</b></td>
+      <td><b>View</b></td>
+      <td><b>Edit</b></td>
+      <td><b>Remove</b></td>
+    </tr>
+  <% @images.each do |image| %>
+    <tr>
+      <td><b><%= image.name %></b></td>
+      <td><b><%= image.imageable_type %></b></td>
+      <td><b><%= image.imageable_id %></b></td>
+      <td><%= button_to "View", image_path(image), method: :get %></td>
+      <td><%= button_to "Edit", edit_image_path(image), method: :get %></td>
+      <td><%= button_to 'Remove', image_path(image), method: 'delete' %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td colspan="6" align="center"><%= button_to "Add new Image", new_image_path, method: :get%></td>
+  </tr>
+</table>
