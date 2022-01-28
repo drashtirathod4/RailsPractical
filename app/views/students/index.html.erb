@@ -1,0 +1,25 @@
+<h1 align="center">List of Students</h1>
+
+<table align="center" cellpadding="15px" border="1px">
+  <tr>
+      <td><b>Studnet Name</b></td>
+      <td><b>DOB</b></td>
+      <td><b>Department</b></td>
+      <td><b>View</b></td>
+      <td><b>Edit</b></td>
+      <td><b>Remove</b></td>
+    </tr>
+  <% @students.each do |student| %>
+    <tr>
+      <td><b><%= student.first_name%> <%= student.last_name %></b></td>
+      <td><%= student.dob %></td>
+      <td><%= student.department %></td>
+      <td><%= button_to "View", student_path(student), method: :get %></td>
+      <td><%= button_to "Edit", edit_student_path(student), method: :get %></td>
+      <td><%= button_to 'Remove', student_path(student), method: 'delete' %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td colspan="6" align="center"><%= button_to "Add new Student", new_student_path, method: :get%></td>
+  </tr>
+</table>

@@ -1,0 +1,31 @@
+<center>
+    <h1>Faculty Details</h1><br>
+    <h2><%= @faculty.first_name %> <%= @faculty.last_name %></h2><br>
+    <table cellpadding="14px">
+        <tr>
+            <td><b>First Name : </b></td>
+            <td><%= @faculty.first_name %></td>
+        </tr>
+        <tr>
+            <td><b>Last Name : </b></td>
+            <td><%= @faculty.last_name %></td>
+        </tr>
+        <tr>
+            <td><b>Phone Number : </b></td>
+            <td><%= @faculty.phone %></td>
+        </tr>
+        <tr>
+            <td><b>Email : </b></td>
+            <td><%= @faculty.email %></td>
+        </tr>
+        <tr>
+            <td><b>DOB : </b></td>
+            <td><%= @faculty.dob %></td>
+        </tr>
+        <tr>
+            <td><b>Designation : </b></td>
+            <td><%= @faculty.designation %></td>
+        </tr>
+    </table><br>
+    <b><%= link_to "Back", faculties_path%></b>
+</center>

@@ -1,0 +1,44 @@
+<center>
+    <h1>Edit Faculty Details</h1>
+
+    <%if flash[:errors] %>
+        <% flash[:errors].each do |error| %>
+            <p style = "color:red"><%= error %></p>
+        <%end%>
+    <%end%>
+
+    <%= form_for @faculty do |f| %>
+        <table cellpadding="15px">
+            <tr>
+                <td><%= f.label :first_Name %></td>
+                <td><%= f.text_field :first_name %></td>
+            </tr>
+            <tr>
+                <td><%= f.label :last_Name %></td>
+                <td><%= f.text_field :last_name %></td>
+            </tr>
+            <tr>
+                <td><%= f.label :phone_Number %></td>
+                <td><%= f.text_field :phone %></td>
+            </tr>
+            <tr>
+                <td><%= f.label :Email %></td>
+                <td><%= f.email_field :email %></td>
+            </tr>
+            <tr>
+                <td><%= f.label :DOB %></td>
+                <td><%= f.date_field :dob %></td>
+            </tr>
+            <tr>
+                <td><%= f.label :Designation %></td>
+                <td><%= f.text_field :designation %>&nbsp; Asst.Prof / Prof.</td>
+            </tr>
+            <tr>
+                <td><%= f.submit %></td>
+            </tr>
+            <tr>
+                <td><b><%= link_to "Back", faculties_path %></b></td>
+            </tr>
+        </table>
+    <%end%>
+</center>
