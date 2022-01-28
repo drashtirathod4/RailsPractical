@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :faculties
+  resources :students
   resources :images
   resources :authors_books
   resources :books

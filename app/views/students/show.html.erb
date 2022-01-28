@@ -1,0 +1,23 @@
+<center>
+    <h1>Student Details</h1><br>
+    <h2><%= @student.first_name %> <%= @student.last_name %></h2><br>
+    <table cellpadding="14px">
+        <tr>
+            <td><b>First Name : </b></td>
+            <td><%= @student.first_name %></td>
+        </tr>
+        <tr>
+            <td><b>Last Name : </b></td>
+            <td><%= @student.last_name %></td>
+        </tr>
+        <tr>
+            <td><b>DOB : </b></td>
+            <td><%= @student.dob %></td>
+        </tr>
+        <tr>
+            <td><b>Department : </b></td>
+            <td><%= @student.department %></td>
+        </tr>
+    </table><br>
+    <b><%= link_to "Back", students_path%></b>
+</center>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_24_162934) do
+ActiveRecord::Schema.define(version: 2022_01_27_091224) do
 
   create_table "authors", force: :cascade do |t|
     t.string "fname"
@@ -37,6 +37,17 @@ ActiveRecord::Schema.define(version: 2022_01_24_162934) do
     t.index ["author_id"], name: "index_books_on_author_id"
   end
 
+  create_table "faculties", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone"
+    t.string "email"
+    t.date "dob"
+    t.string "designation"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "images", force: :cascade do |t|
     t.string "name"
     t.string "imageable_type"
@@ -49,6 +60,16 @@ ActiveRecord::Schema.define(version: 2022_01_24_162934) do
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "desc"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.date "dob"
+    t.string "department"
+    t.boolean "terms_of_usage"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

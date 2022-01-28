@@ -1,0 +1,28 @@
+<h1 align="center">List of Faculties</h1>
+<table align="center" cellpadding="15px" border="1px">
+  <tr>
+    <td><b>Faculty Name</b></td>
+    <td><b>Phone Number</b></td>
+    <td><b>Email</b></td>
+    <td><b>DOB</b></td>
+    <td><b>Designation</b></td>
+    <td><b>View</b></td>
+    <td><b>Edit</b></td>
+    <td><b>Remove</b></td>
+  </tr>
+  <% @faculties.each do |faculty| %>
+    <tr>
+      <td><b><%= faculty.first_name%> <%= faculty.last_name %></b></td>
+      <td><%= faculty.phone %></td>
+      <td><%= faculty.email %></td>
+      <td><%= faculty.dob %></td>
+      <td><%= faculty.designation %></td>
+      <td><%= button_to "View", faculty_path(faculty), method: :get %></td>
+      <td><%= button_to "Edit", edit_faculty_path(faculty), method: :get %></td>
+      <td><%= button_to 'Remove', faculty_path(faculty), method: 'delete' %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td colspan="9" align="center"><%= button_to "Add new Faculty", new_faculty_path, method: :get%></td>
+  </tr>
+</table>
