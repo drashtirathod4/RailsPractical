@@ -1,11 +1,11 @@
 <center>
     <h1>Edit Faculty Details</h1>
 
-    <%if flash[:errors] %>
+    <% if flash[:errors] %>
         <% flash[:errors].each do |error| %>
             <p style = "color:red"><%= error %></p>
-        <%end%>
-    <%end%>
+        <% end %>
+    <% end %>
 
     <%= form_for @faculty do |f| %>
         <table cellpadding="15px">
@@ -40,5 +40,5 @@
                 <td><b><%= link_to "Back", faculties_path %></b></td>
             </tr>
         </table>
-    <%end%>
+    <% end %>
 </center>

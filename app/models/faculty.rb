@@ -5,12 +5,7 @@ class Faculty < ApplicationRecord
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, unless: Proc.new { |a| a.email.blank? }
   validate :dob_cannot_be_in_the_future
   validates :designation, inclusion: {in: %w{Ass.Prof. Prof.}, message: " can't be the value %{value} inserted!"}, unless: Proc.new { |a| a.designation.blank? }
-
-  def dob_cannot_be_in_the_future
-      if dob.present? && dob > Date.today
-        errors.add(:dob, "Birthdate can't be in future!")
-      end
-  end
+  include DobValidation 
 
   before_validation :normalize_name, :remove_whitespaces, if: :first_name?, if: :last_name
   after_validation :display_status
@@ -24,10 +19,6 @@ class Faculty < ApplicationRecord
 
   after_find do |faculty|
     puts "Faculty found"
-  end
-
-  around_create do |faculty|
-    puts "Around Create"
   end
 
   after_create do |faculty|
@@ -47,29 +38,24 @@ class Faculty < ApplicationRecord
     puts "Email Validated"
   end
   
-  private
   def normalize_name
       self.first_name  = first_name.downcase.titleize
       self.last_name = last_name.downcase.titleize
   end
 
-  private
   def remove_whitespaces
       first_name.strip!
       last_name.strip!
   end
 
-  private
   def display_reason
     puts "#{self.first_name} is deleted!"
   end
   
-  private
   def display_status
     puts "Validated"
   end
 
-  private
   def check_dob
     puts "Callback after validating DOB!"
     puts "DOB is valid!"
