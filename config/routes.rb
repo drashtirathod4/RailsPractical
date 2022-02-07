@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  # route for search by no of order page
+  get 'employees/search_by_order'
+  # route for query list page in employees
+  get 'employees/list'
+  resources :employees
   resources :faculties
   resources :students
   resources :images

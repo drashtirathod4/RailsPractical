@@ -1,0 +1,35 @@
+<center>
+    <h1>Employee Details</h1><br>
+    <h2><%= @employee.first_name %> <%= @employee.last_name %></h2><br>
+    <table cellpadding="14px">
+        <tr>
+            <td><b>First Name : </b></td>
+            <td><%= @employee.first_name %></td>
+        </tr>
+        <tr>
+            <td><b>Last Name : </b></td>
+            <td><%= @employee.last_name %></td>
+        </tr>
+        <tr>
+            <td><b>Email : </b></td>
+            <td><%= @employee.email %></td>
+        </tr>
+        <tr>
+            <td><b>Age : </b></td>
+            <td><%= @employee.age %></td>
+        </tr>
+        <tr>
+            <td><b>No of Order : </b></td>
+            <td><%= @employee.no_of_order %></td>
+        </tr>
+        <tr>
+            <td><b>Full Time : </b></td>
+            <td><%= @employee.full_time_available %></td>
+        </tr>
+        <tr>
+            <td><b>Salary : </b></td>
+            <td><%= @employee.salary %></td>
+        </tr>
+    </table><br>
+    <b><%= link_to "Back", employees_path %></b>
+</center>
