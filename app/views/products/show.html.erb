@@ -1,4 +1,35 @@
-<h1>Product Details</h1>
-
-<h1><%= @product.name %></h1>
-<h4>"<%= @product.desc %>"</h4>
+<center>
+    <h1>Product Details</h1><br>
+    <h2><%= @product.title %></h2><br>
+    <table cellpadding="14px">
+        <tr>
+            <td><b>Title : </b></td>
+            <td><%= @product.title %></td>
+        </tr>
+        <tr>
+            <td><b>Description : </b></td>
+            <td><%= @product.description %></td>
+        </tr>
+        <tr>
+            <td><b>Price : </b></td>
+            <td><%= @product.price %></td>
+        </tr>
+        <tr>
+            <td><b>Capacity : </b></td>
+            <td><%= @product.capacity %></td>
+        </tr>
+        <tr>
+            <td><b>Is Active : </b></td>
+            <td><%= @product.is_active %></td>
+        </tr>
+        <tr>
+            <td><b>Status : </b></td>
+            <td><%= @product.status %></td>
+        </tr>
+        <tr>
+            <td><b>Total count Order : </b></td>
+            <td><%= @product.orders.count %></td>
+        </tr>
+    </table><br>
+    <b><%= link_to "Back", products_path %></b>
+</center>

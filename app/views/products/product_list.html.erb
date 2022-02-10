@@ -1,5 +1,5 @@
 <center>
-  <h1>List of Products</h1><br>
+  <h1>List of Products with Is Active true</h1>
   <table cellpadding="15px" border="1px">
     <tr>
       <th>Product Name</th>
@@ -15,7 +15,7 @@
     </tr>
     <% @products.each do |product| %>
       <tr>
-        <td><b><%= product.title %></b></td>
+        <td><b><%= product.title%></b></td>
         <td><%= product.description %></td>
         <td><%= product.price %></td>
         <td><%= product.capacity %></td>
@@ -28,8 +28,8 @@
       </tr>
     <% end %>
     <tr>
-      <td colspan="10" align="center"><%= button_to "Add new Product", new_product_path, method: :get %></td>
+      <td colspan="19" align="center"><%= button_to "Add new Product", new_product_path, method: :get%></td>
     </tr>
   </table><br>
-  <b><%= link_to "Go to List of products with default scope", products_product_list_path %></b>
+  <b><%= link_to "Back", products_path %></b>
 </center>

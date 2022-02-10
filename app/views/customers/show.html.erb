@@ -1,0 +1,23 @@
+<center>
+    <h1>Customer Details</h1><br>
+    <h2><%= @customer.fname %> <%= @customer.lname %></h2><br>
+    <table cellpadding="14px">
+        <tr>
+            <td><b>First Name : </b></td>
+            <td><%= @customer.fname %></td>
+        </tr>
+        <tr>
+            <td><b>Last Name : </b></td>
+            <td><%= @customer.lname %></td>
+        </tr>
+        <tr>
+            <td><b>Email : </b></td>
+            <td><%= @customer.email %></td>
+        </tr>
+        <tr>
+            <td><b>Phone Number : </b></td>
+            <td><%= @customer.phone %></td>
+        </tr>
+    </table><br><br>
+    <b><%= link_to "Back", customers_path %></b>
+</center>

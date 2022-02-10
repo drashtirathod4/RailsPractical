@@ -1,0 +1,35 @@
+<center>
+    <h1>Edit Order Details</h1>
+    <% if flash[:errors] %>
+        <% flash[:errors].each do |error| %>
+            <p style = "color:red"><%= error %></p>
+        <% end %>
+    <% end %>
+
+    <%= form_for @order do |o| %>
+        <table cellpadding="15px">
+            <tr>
+                <td><%= o.label :product %></td>
+                <td><%= o.collection_select :product_id, Product.unscoped.all, :id, :title %></td>
+            </tr>
+            <tr>
+                <td><%= o.label :customer %></td>
+                <td><%= o.collection_select :customer_id, Customer.all, :id, :fname %></td>
+            </tr>
+            <tr>
+                <td><%= o.label :product_Quantity %></td>
+                <td><%= o.number_field :quantity %></td>
+            </tr>
+            <tr>
+                <td><%= o.label :status %></td>
+                <td><%= o.select :status, options_for_select(Order.statuses.map {|key, value| [key.titleize, Order.statuses.key(value)]}, @order.status) %></td>
+            </tr>
+            <tr>
+                <td><%= o.submit %></td>
+            </tr>
+            <tr>
+                <td><b><%= link_to "Back", orders_path %></b></td>
+            </tr>
+        </table>
+    <% end %>
+</center>

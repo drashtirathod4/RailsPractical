@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_04_092212) do
+ActiveRecord::Schema.define(version: 2022_02_09_112051) do
 
   create_table "authors", force: :cascade do |t|
     t.string "fname"
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 2022_02_04_092212) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "author_id", null: false
     t.index ["author_id"], name: "index_books_on_author_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "fname"
+    t.string "lname"
+    t.string "email"
+    t.string "phone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "employees", force: :cascade do |t|
@@ -69,11 +78,27 @@ ActiveRecord::Schema.define(version: 2022_02_04_092212) do
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable"
   end
 
-  create_table "products", force: :cascade do |t|
-    t.string "name"
-    t.string "desc"
+  create_table "orders", force: :cascade do |t|
+    t.integer "quantity"
+    t.decimal "total_price"
+    t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "product_id", null: false
+    t.integer "customer_id", null: false
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.index ["product_id"], name: "index_orders_on_product_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.decimal "price"
+    t.string "capacity"
+    t.boolean "is_active"
+    t.integer "status"
   end
 
   create_table "students", force: :cascade do |t|
@@ -87,4 +112,6 @@ ActiveRecord::Schema.define(version: 2022_02_04_092212) do
   end
 
   add_foreign_key "books", "authors"
+  add_foreign_key "orders", "customers"
+  add_foreign_key "orders", "products"
 end
