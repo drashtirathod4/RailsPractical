@@ -1,0 +1,26 @@
+<center>
+    <h1>List of Events</h1>
+    <table cellpadding="15px" border="1px">
+        <tr>
+            <td><b>Event Name</b></td>
+            <td><b>Description</b></td>
+            <td><b>Event Date</b></td>
+            <td><b>View</b></td>
+            <td><b>Edit</b></td>
+            <td><b>Remove</b></td>
+        </tr>
+        <% @events.each do |event| %>
+            <tr>
+                <td><b><%= event.name %></b></td>
+                <td><%= event.description %></td>
+                <td><%= event.event_date %></td>
+                <td><%= button_to "View", event_path(event), method: :get %></td>
+                <td><%= button_to "Edit", edit_event_path(event), method: :get %></td>
+                <td><%= button_to 'Remove', event_path(event), method: 'delete' %></td>
+            </tr>
+        <% end %>
+        <tr>
+            <td colspan="6" align="center"><%= button_to "Add new Event", new_event_path, method: :get%></td>
+        </tr>
+    </table>
+</center>

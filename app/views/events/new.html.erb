@@ -1,0 +1,31 @@
+<center>
+    <h1>Add new Event</h1>
+
+    <%if flash[:errors] %>
+        <% flash[:errors].each do |error| %>
+            <p style = "color:red"><%= error %></p>
+        <% end %>
+    <% end %>
+    <%= form_for @event do |e| %>
+        <table cellpadding="15px">
+            <tr>
+                <td><%= e.label :name %></td>
+                <td><%= e.text_field :name %></td>
+            </tr>
+            <tr>
+                <td><%= e.label :description %></td>
+                <td><%= e.text_field :description %></td>
+            </tr>
+            <tr>
+                <td><%= e.label :event_date %></td>
+                <td><%= e.date_field :event_date %></td>
+            </tr>
+            <tr>
+                <td><%= e.submit %></td>
+            </tr>
+            <tr>
+                <td><b><%= link_to "Back", events_path %></b></td>
+            </tr>
+        </table>
+    <% end %>
+</center>
