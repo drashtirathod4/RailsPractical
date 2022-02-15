@@ -28,7 +28,7 @@
         </tr>
         <% Employee.where("age > 20").where("age < 40").each do |employee| %>
             <tr>
-                <td><b><%= employee.first_name %> <%= employee.last_name %></b></td>
+                <td><b><%= employee.full_name %></b></td>
                 <td><%= employee.email %></td>
                 <td><%= employee.age %></td>
                 <td><%= employee.no_of_order %></td>
@@ -45,7 +45,7 @@
         </tr>
         <% Employee.where(full_time_available: true).each do |employee| %>
             <tr>
-                <td><b><%= employee.first_name %> <%= employee.last_name %></b></td>
+                <td><b><%= employee.full_name %></b></td>
                 <td><%= employee.email %></td>
                 <td><%= employee.age %></td>
                 <td><%= employee.no_of_order %></td>
@@ -62,7 +62,7 @@
         </tr>
         <% Employee.where("no_of_order = 5").where("age > 25").each do |employee| %>
             <tr>
-                <td><b><%= employee.first_name %> <%= employee.last_name %></b></td>
+                <td><b><%= employee.full_name %></b></td>
                 <td><%= employee.email %></td>
                 <td><%= employee.age %></td>
                 <td><%= employee.no_of_order %></td>
@@ -79,7 +79,7 @@
         </tr>
         <% Employee.where("created_at < ?", Time.zone.now.beginning_of_day).each do |employee| %>
             <tr>
-                <td><b><%= employee.first_name %> <%= employee.last_name %></b></td>
+                <td><b><%= employee.full_name %></b></td>
                 <td><%= employee.email %></td>
                 <td><%= employee.age %></td>
                 <td><%= employee.no_of_order %></td>
@@ -96,7 +96,7 @@
         </tr>
         <% Employee.where("no_of_order = 5").or(Employee.where("age < 25")).each do |employee| %>
             <tr>
-                <td><b><%= employee.first_name %> <%= employee.last_name %></b></td>
+                <td><b><%= employee.full_name %></b></td>
                 <td><%= employee.email %></td>
                 <td><%= employee.age %></td>
                 <td><%= employee.no_of_order %></td>
@@ -113,7 +113,7 @@
         </tr>
         <% Employee.order(age: :desc).each do |employee| %>
             <tr>
-                <td><b><%= employee.first_name %> <%= employee.last_name %></b></td>
+                <td><b><%= employee.full_name %></b></td>
                 <td><%= employee.email %></td>
                 <td><%= employee.age %></td>
                 <td><%= employee.no_of_order %></td>
@@ -130,7 +130,7 @@
         </tr>
         <% Employee.order(:no_of_order).each do |employee| %>
             <tr>
-                <td><b><%= employee.first_name %> <%= employee.last_name %></b></td>
+                <td><b><%= employee.full_name %></b></td>
                 <td><%= employee.email %></td>
                 <td><%= employee.age %></td>
                 <td><%= employee.no_of_order %></td>
@@ -147,7 +147,7 @@
         </tr>
         <% Employee.group("salary").having("salary > 45000").each do |employee| %>
             <tr>
-                <td><b><%= employee.first_name %> <%= employee.last_name %></b></td>
+                <td><b><%= employee.full_name %></b></td>
                 <td><%= employee.email %></td>
                 <td><%= employee.age %></td>
                 <td><%= employee.no_of_order %></td>
@@ -164,7 +164,7 @@
         </tr>
         <% Employee.group(:no_of_order).having("no_of_order > 5").each do |employee| %>
             <tr>
-                <td><b><%= employee.first_name %> <%= employee.last_name %></b></td>
+                <td><b><%= employee.full_name %></b></td>
                 <td><%= employee.email %></td>
                 <td><%= employee.age %></td>
                 <td><%= employee.no_of_order %></td>
@@ -181,7 +181,7 @@
         </tr>
         <% Employee.where('no_of_order <= 5').order(:no_of_order).limit(3).unscope(:limit).each do |employee| %>
             <tr>
-                <td><b><%= employee.first_name %> <%= employee.last_name %></b></td>
+                <td><b><%= employee.full_name %></b></td>
                 <td><%= employee.email %></td>
                 <td><%= employee.age %></td>
                 <td><%= employee.no_of_order %></td>
@@ -198,7 +198,7 @@
         </tr>
         <% Employee.where('no_of_order <= 5').order(:no_of_order).limit(3).only(:where, :order).each do |employee| %>
             <tr>
-                <td><b><%= employee.first_name %> <%= employee.last_name %></b></td>
+                <td><b><%= employee.full_name %></b></td>
                 <td><%= employee.email %></td>
                 <td><%= employee.age %></td>
                 <td><%= employee.no_of_order %></td>
@@ -215,7 +215,7 @@
         </tr>
         <% Employee.select(:salary).reselect(:id, :first_name, :last_name, :full_time_available).each do |employee| %>
             <tr>
-                <td><b><%= employee.first_name %> <%= employee.last_name %></b></td>
+                <td><b><%= employee.full_name %></b></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -232,7 +232,7 @@
         </tr>
         <% Employee.order('first_name desc').reorder('salary').each do |employee| %>
             <tr>
-                <td><b><%= employee.first_name %> <%= employee.last_name %></b></td>
+                <td><b><%= employee.full_name %></b></td>
                 <td><%= employee.email %></td>
                 <td><%= employee.age %></td>
                 <td><%= employee.no_of_order %></td>
@@ -249,7 +249,7 @@
         </tr>
         <% Employee.where("id > 5").reverse_order.each do |employee| %>
             <tr>
-                <td><b><%= employee.first_name %> <%= employee.last_name %></b></td>
+                <td><b><%= employee.full_name %></b></td>
                 <td><%= employee.email %></td>
                 <td><%= employee.age %></td>
                 <td><%= employee.no_of_order %></td>

@@ -25,7 +25,7 @@
         </tr>
         <% @employees.each do |employee| %>
             <tr>
-                <td><b><%= employee.first_name %> <%= employee.last_name %></b></td>
+                <td><b><%= employee.full_name %></b></td>
                 <td><%= employee.email %></td>
                 <td><%= employee.age %></td>
                 <td><%= employee.no_of_order %></td>

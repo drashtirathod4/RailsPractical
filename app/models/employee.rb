@@ -7,6 +7,10 @@ class Employee < ApplicationRecord
     validates :age, numericality: true, unless: Proc.new { |a| a.age.blank? }
     before_save :full_time_check, unless: :full_time_available?
     
+    def full_name 
+        self.first_name + " " + self.last_name
+    end
+
     private
     def full_time_check
         self.full_time_available = false

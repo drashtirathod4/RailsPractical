@@ -42,7 +42,9 @@ class EmployeesController < ApplicationController
     redirect_to employees_path
   end
 
+  # Path of list page : employee/list
   def list
+    @employee = Employee.all
   end
    
   def search_by_order
