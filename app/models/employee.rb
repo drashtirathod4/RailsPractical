@@ -6,6 +6,10 @@ class Employee < ApplicationRecord
     validates :no_of_order, numericality: true, unless: Proc.new { |a| a.no_of_order.blank? }
     validates :age, numericality: true, unless: Proc.new { |a| a.age.blank? }
     before_save :full_time_check, unless: :full_time_available?
+
+    def full_name
+        self.first_name + " " + self.last_name
+    end
     
     private
     def full_time_check
@@ -37,6 +41,7 @@ class Employee < ApplicationRecord
             Employee.all
         end
     end
+
 
     # Pessimistic Locking
     Employee.transaction do 

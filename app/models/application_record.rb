@@ -8,4 +8,4 @@ module DobValidation
       errors.add(:dob, "Birthdate can't be in future!")
     end
   end
-end 
+end
