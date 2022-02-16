@@ -1,0 +1,27 @@
+<h1>Edit Author</h1>
+<%= form_for @author do |f| %>
+    <table cellpadding="15px">
+        <tr>
+            <td><%= f.label :first_Name %></td>
+            <td><%= f.text_field :fname %></td>
+        </tr>
+        <tr>
+            <td><%= f.label :last_Name %></td>
+            <td><%= f.text_field :lname %></td>
+        </tr>
+        <tr>
+            <td><%= f.label :DOB %></td>
+            <td><%= f.date_field :dob %></td>
+        </tr>
+        <tr>
+            <td><%= f.label :email %></td>
+            <td><%= f.email_field :email %></td>
+        </tr>
+        <tr>
+            <td><%= f.submit %></td>
+        </tr>
+        <tr>
+            <td><b><%= link_to "Back", authors_path %></b></td>
+        </tr>
+    </table>
+<%end%>

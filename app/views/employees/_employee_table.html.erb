@@ -1,0 +1,11 @@
+<tr>
+    <td><b><%= employee.full_name %></b></td>
+    <td><%= employee.email %></td>
+    <td><%= employee.age %></td>
+    <td><%= employee.no_of_order %></td>
+    <td><%= employee.full_time_available %></td>
+    <td><%= employee.salary %></td>
+    <td><%= button_to "View", employee_path(employee), method: :get %></td>
+    <td><%= button_to "Edit", edit_employee_path(employee), method: :get %></td>
+    <td><%= button_to 'Remove', employee_path(employee), method: 'delete' %></td>
+</tr>

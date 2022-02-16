@@ -1,0 +1,48 @@
+<center>
+    <h1>Add new Employee</h1>
+
+    <%if flash[:errors] %>
+        <% flash[:errors].each do |error| %>
+            <p style = "color:red"><%= error %></p>
+        <% end %>
+    <% end %>
+
+    <%= form_for @employee do |e| %>
+        <table cellpadding="15px">
+            <tr>
+                <td><%= e.label :first_Name %></td>
+                <td><%= e.text_field :first_name %></td>
+            </tr>
+            <tr>
+                <td><%= e.label :last_Name %></td>
+                <td><%= e.text_field :last_name %></td>
+            </tr>
+            <tr>
+                <td><%= e.label :email %></td>
+                <td><%= e.email_field :email %></td>
+            </tr>
+            <tr>
+                <td><%= e.label :age %></td>
+                <td><%= e.text_field :age %></td>
+            </tr>
+            <tr>
+                <td><%= e.label :no_of_Order %></td>
+                <td><%= e.text_field :no_of_order %></td>
+            </tr>
+            <tr>
+                <td><%= e.label :full_Time_Available %></td>
+                <td><%= e.check_box :full_time_available, {}, true, false %></td>
+            </tr>
+            <tr>
+                <td><%= e.label :salary %></td>
+                <td><%= e.text_field :salary %></td>
+            </tr>
+            <tr>
+                <td><%= e.submit %></td>
+            </tr>
+            <tr>
+                <td><b><%= link_to "Back", employees_path %></b></td>
+            </tr>
+        </table>
+    <% end %>
+</center>
