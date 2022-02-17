@@ -1,10 +1,12 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all()
+    @events = Event.search(params[:search]).order("event_date desc")
   end
 
   def show
     @event = Event.find(params[:id])
+    @comments = @event.comments
+    @current_user = current_user
   end
 
   def new
@@ -14,7 +16,7 @@ class EventsController < ApplicationController
   def create
     event = Event.create(event_params)
     if event.valid?
-      redirect_to events_path
+      redirect_to welcome_path
     else 
       flash[:errors] = event.errors.full_messages
       redirect_to new_event_path
@@ -29,7 +31,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.update(event_params)
     if @event.valid?
-      redirect_to event_path
+      redirect_to welcome_path
     else 
       flash[:errors] = @event.errors.full_messages
       redirect_to edit_event_path(@event)
@@ -39,11 +41,11 @@ class EventsController < ApplicationController
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
-    redirect_to events_path
+    redirect_to welcome_path
   end
 
   private 
   def event_params
-    params.require(:event).permit(:name, :description, :event_date)
+    params.require(:event).permit(:name, :description, :event_date, :user_id, :category_id)
   end
 end

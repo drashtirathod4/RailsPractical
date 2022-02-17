@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_14_113512) do
+ActiveRecord::Schema.define(version: 2022_02_17_051403) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.text "address"
+    t.string "addressable_type"
+    t.integer "addressable_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable"
+    t.index ["user_id"], name: "index_addresses_on_user_id", unique: true
+  end
 
   create_table "authors", force: :cascade do |t|
     t.string "fname"
@@ -35,6 +46,23 @@ ActiveRecord::Schema.define(version: 2022_02_14_113512) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "author_id", null: false
     t.index ["author_id"], name: "index_books_on_author_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "title"
+    t.integer "user_id"
+    t.integer "like"
+    t.string "commentable_type"
+    t.integer "commentable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -64,6 +92,10 @@ ActiveRecord::Schema.define(version: 2022_02_14_113512) do
     t.date "event_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_events_on_category_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "faculties", force: :cascade do |t|
@@ -109,6 +141,15 @@ ActiveRecord::Schema.define(version: 2022_02_14_113512) do
     t.integer "status"
   end
 
+  create_table "registers", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "event_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_registers_on_event_id"
+    t.index ["user_id"], name: "index_registers_on_user_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -119,7 +160,22 @@ ActiveRecord::Schema.define(version: 2022_02_14_113512) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "fname"
+    t.string "lname"
+    t.string "email"
+    t.string "phone"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "addresses", "users"
   add_foreign_key "books", "authors"
+  add_foreign_key "events", "categories"
+  add_foreign_key "events", "users"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "products"
+  add_foreign_key "registers", "events"
+  add_foreign_key "registers", "users"
 end

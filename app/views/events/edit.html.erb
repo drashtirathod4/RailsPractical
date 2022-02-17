@@ -6,6 +6,7 @@
             <p style = "color:red"><%= error %></p>
         <% end %>
     <% end %>
+    
     <%= form_for @event do |e| %>
         <table cellpadding="15px">
             <tr>
@@ -21,10 +22,14 @@
                 <td><%= e.date_field :event_date %></td>
             </tr>
             <tr>
+                <td><%= e.label :category %></td>
+                <td><%= e.collection_select :category_id, Category.all, :id, :name %></td>
+            </tr>
+            <tr>
                 <td><%= e.submit %></td>
             </tr>
             <tr>
-                <td><b><%= link_to "Back", events_path %></b></td>
+                <td><b><%= link_to "Back", welcome_path %></b></td>
             </tr>
         </table>
     <% end %>

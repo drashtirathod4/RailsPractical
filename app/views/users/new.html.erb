@@ -1,0 +1,44 @@
+<center>
+    <h1>Signup</h1>
+
+    <%if flash[:errors] %>
+        <% flash[:errors].each do |error| %>
+            <p style = "color:red"><%= error %></p>
+        <% end %>
+    <% end %>
+    
+    <%= form_for @user do |u| %>
+        <table cellpadding="15px">
+            <tr>
+                <td><%= u.label :first_name %></td>
+                <td><%= u.text_field :fname %></td>
+            </tr>
+            <tr>
+                <td><%= u.label :last_name %></td>
+                <td><%= u.text_field :lname %></td>
+            </tr>
+            <tr>
+                <td><%= u.label :email %></td>
+                <td><%= u.email_field :email %></td>
+            </tr>
+            <tr>
+                <td><%= u.label :phone %></td>
+                <td><%= u.text_field :phone %></td>
+            </tr>
+            <tr>
+                <td><%= u.label :password %></td>
+                <td><%= u.password_field :password %></td>
+            </tr>
+            <tr>
+                <td><%= u.label :password_confirmation %></td>
+                <td><%= u.password_field :password_confirmation %></td>
+            </tr>
+            <tr>
+                <td><%= u.submit "Signup" %></td>
+            </tr>
+            <tr>
+                <td><b><%= link_to "Back", events_path %></b></td>
+            </tr>
+        </table>
+    <% end %>
+</center>

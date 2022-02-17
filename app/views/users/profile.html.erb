@@ -1,0 +1,48 @@
+<center>
+    <h1>User Profile</h1><br>
+    <h2><%= @user.full_name %></h2><br>
+    <table cellpadding="14px">
+        <tr>
+            <td><b>First Name : </b></td>
+            <td><%= @user.fname %></td>
+        </tr>
+        <tr>
+            <td><b>Last Name : </b></td>
+            <td><%= @user.lname %></td>
+        </tr>
+        <tr>
+            <td><b>Email : </b></td>
+            <td><%= @user.email %></td>
+        </tr>
+        <tr>
+            <td><b>Phone : </b></td>
+            <td><%= @user.phone %></td>
+        </tr>
+        <tr>
+            <td><b>Address : </b></td>
+            <td><%= @user.address.address %></td>
+        </tr>
+    </table><br><br>
+
+    <h1>Your Enrolled Events</h1>
+    <table cellpadding="15px" border="1px">
+        <tr>
+            <td><b>Event Name</b></td>
+            <td><b>Description</b></td>
+            <td><b>Event Date</b></td>
+            <td><b>Category</b></td>
+            <td><b>Organizer</b></td>
+            <td><b>View</b></td>
+        </tr>
+        <% @registered_events.each do |r| %>
+            <tr>
+                <td><%= r.event.name %></td>
+                <td><%= r.event.description %></td>
+                <td><%= r.event.event_date %></td>
+                <td><%= r.event.category.name %></td>
+                <td><%= r.event.user.full_name %></td>
+                <td><%= button_to "View", event_path(r.event), method: :get %></td>
+            </tr>
+        <% end %>
+    </table><br><br>
+</center>

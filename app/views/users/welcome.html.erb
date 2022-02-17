@@ -1,0 +1,65 @@
+<center>
+    <%if flash[:notice] %>
+        <p style = "color:green"><%= notice %></p>
+    <% end %>
+    
+    <p><%= button_to "Logout", logout_path , method: :delete%></p>
+    <h3 style ="text-align: end; padding-right: 100px;"><b><%= link_to "Profile", profile_path(@current_user) %></b></h3>
+    
+    <h1>Welcome <%= @current_user.full_name %></h1><hr>
+    
+    <h1>Your Events</h1>
+    <b><%= link_to "Users registered in your events", people_registered_path %></b><br><br>
+    <table cellpadding="15px" border="1px">
+        <tr>
+            <td><b>Event Name</b></td>
+            <td><b>Description</b></td>
+            <td><b>Event Date</b></td>
+            <td><b>Category</b></td>
+            <td><b>Organizer</b></td>
+            <td><b>View</b></td>
+            <td><b>Edit</b></td>
+            <td><b>Remove</b></td>
+        </tr>
+        <% @events.each do |event| %>
+            <tr>
+                <td><b><%= event.name %></b></td>
+                <td><%= event.description %></td>
+                <td><%= event.event_date %></td>
+                <td><%= event.category.name %></td>
+                <td><%= event.user.full_name %></td>
+                <td><%= button_to "View", event_path(event), method: :get %></td>
+                <td><%= button_to "Edit", edit_event_path(event), method: :get %></td>
+                <td><%= button_to "Remove", event_path(event), method: 'delete' %></td>
+            </tr>
+        <% end %>
+        <tr>
+            <td colspan="8" align="center"><%= button_to "Add new Event", new_event_path, method: :get%></td>
+        </tr>
+    </table><br><br><br><hr>
+
+    <h1>All other Events</h1>
+
+    <table cellpadding="15px" border="1px">
+        <tr>
+            <td><b>Event Name</b></td>
+            <td><b>Description</b></td>
+            <td><b>Event Date</b></td>
+            <td><b>Category</b></td>
+            <td><b>Organizer</b></td>
+            <td><b>View</b></td>
+            <td><b>Enroll</b></td>
+        </tr>
+        <% @allevents.each do |event| %>
+            <tr>
+                <td><b><%= event.name %></b></td>
+                <td><%= event.description %></td>
+                <td><%= event.event_date %></td>
+                <td><%= event.category.name %></td>
+                <td><%= event.user.full_name %></td>
+                <td><%= button_to "View", event_path(event), method: :get %></td>
+                <td><%= button_to "Enroll", register_event_path, method: :get %></td>
+            </tr>
+        <% end %>
+    </table><br><br><br><hr>
+</center>

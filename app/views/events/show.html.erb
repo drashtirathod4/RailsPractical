@@ -14,6 +14,32 @@
             <td><b>Event Date : </b></td>
             <td><%= @event.event_date %></td>
         </tr>
-    </table><br><br>
-    <b><%= link_to "Back", events_path %></b>
+        <tr>
+            <td><b>Category : </b></td>
+            <td><%= @event.category.name %></td>
+        </tr>
+        <tr>
+            <td><b>Organizer : </b></td>
+            <td><%= @event.user.full_name %></td>
+        </tr>
+    </table>
+
+    <h1>Comments</h1>
+    <table cellpadding="10px">
+        <% @comments.each do |comment| %>
+            <tr>
+                <td><b><%= comment.title %></b></td>
+            </tr>
+        <% end %>
+    </table>
+
+    <%= form_for [@event, Comment.new] do |f| %>
+        <table>
+            <tr>
+                <td><%= f.text_area :title, class: "form-control", placeholder: "Add a Comment" %></td>
+                <td><%= f.hidden_field :user_id, value: @current_user.id, class: "form-control" %></td>
+            </tr>
+        </table>
+        <%= f.submit class: "btn btn-primary" %>
+    <% end %>
 </center>
