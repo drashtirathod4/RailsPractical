@@ -1,0 +1,39 @@
+<center>
+    <h1>List of Events</h1>
+    <%= form_tag events_path, method: :get do %>
+        <table cellpadding = "15px">
+            <tr>
+                <td><b>Search Event by Category Name : </b></td>
+                <td><%= text_field_tag :search, params[:search] %></td>
+                <td><%= submit_tag "Search" %></td>
+                <td><%= link_to "Back", events_path, method: :get %></td>
+            </tr>
+        </table>
+    <% end %>
+
+    <%if flash[:notice] %>
+        <p style = "color:green"><%= notice %></p>
+    <% end %><br>
+
+    <%= button_to "Signup", '/signup', method: :get %><br>
+    <%= button_to "Login", '/login', method: :get %><br>
+
+    <table cellpadding="15px" border="1px">
+        <tr>
+            <td><b>Event Name</b></td>
+            <td><b>Description</b></td>
+            <td><b>Event Date</b></td>
+            <td><b>Category</b></td>
+            <td><b>Organizer</b></td>
+        </tr>
+        <% @events.each do |event| %>
+            <tr>
+                <td><b><%= event.name %></b></td>
+                <td><%= event.description %></td>
+                <td><%= event.event_date %></td>
+                <td><%= event.category.name %></td>
+                <td><%= event.user.full_name %></td>
+            </tr>
+        <% end %>
+    </table><br><br>
+</center>

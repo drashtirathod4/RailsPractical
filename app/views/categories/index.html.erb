@@ -1,0 +1,22 @@
+<center>
+  <h1>List of Categories</h1><br>
+  <table cellpadding="15px" border="1px">
+    <tr>
+      <th>Category Name</th>
+      <th>View</th>
+      <th>Edit</th>
+      <th>Remove</th>
+    </tr>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><b><%= category.name %></b></td>
+        <td><%= button_to "View", category_path(category), method: :get %></td>
+        <td><%= button_to "Edit", edit_category_path(category), method: :get %></td>
+        <td><%= button_to 'Remove', category_path(category), method: 'delete' %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="4" align="center"><%= button_to "Add new Category", new_category_path, method: :get %></td>
+    </tr>
+  </table>
+</center>

@@ -1,0 +1,26 @@
+<center>
+    <h1>Login</h1>
+
+    <%if flash[:notice] %>
+        <p style = "color:red"><%= notice %></p>
+    <% end %>
+    <%= form_tag (sessions_path) do %>
+        <table cellpadding="15px">
+            <tr>
+                <td><%= label_tag :email %></td>
+                <td><%= email_field_tag :email %></td>
+            </tr>
+            <tr>
+                <td><%= label_tag :password %></td>
+                <td><%= password_field_tag :password %></td>
+            </tr>
+            <tr>
+                <td><%= submit_tag "Login" %></td>
+            </tr>
+            <tr>
+                <td><b><%= link_to "Back", events_path %></b></td>
+                <td><b>New User ? &nbsp;&nbsp;<%= link_to "Signup", '/signup' %></b></td>
+            </tr>
+        </table>
+    <% end %>
+</center>

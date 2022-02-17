@@ -1,0 +1,26 @@
+<center><br>
+    <h1>Details of User Reistered in your Events</h1><br>
+    <table cellpadding="15px" border="1px">
+        <tr>
+            <td><b>User Name</b></td>
+            <td><b>Event Name</b></td>
+            <td><b>Description</b></td>
+            <td><b>Event Date</b></td>
+            <td><b>Category</b></td>
+            <td><b>Event Organizer</b></td>
+            <td><b>View</b></td>
+        </tr>
+        <% @registers.each do |r| %>
+            <tr>
+                <td><b><%= r.user.full_name %></b></td>
+                <td><%= r.event.name %></td>
+                <td><%= r.event.description %></td>
+                <td><%= r.event.event_date %></td>
+                <td><%= r.event.category.name %></td>
+                <td><%= r.event.user.full_name %></td>
+                <td><%= button_to "View Event", event_path(r.event), method: :get %></td>
+            </tr>
+        <% end %>
+    </table><br><br>
+    <b><%= link_to "Back", welcome_path %></b>
+</center>
