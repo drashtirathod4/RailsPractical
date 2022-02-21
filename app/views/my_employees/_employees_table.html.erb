@@ -1,0 +1,31 @@
+<table cellpadding="15px" border="1px">
+    <tr>
+        <th>Employee Name</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>Hobbies</th>
+        <th>Address</th>
+        <th>Mobile Number</th>
+        <th>Birth Date</th>
+        <th>View</th>
+        <th>Edit</th>
+        <th>Remove</th>
+    </tr>
+    <% @employees.each do |employee| %>
+        <tr>
+        <td><b><%= employee.employee_name %></b></td>
+        <td><%= employee.email %></td>
+        <td><%= employee.gender %></td>
+        <td><%= employee.hobbies %></td>
+        <td><%= employee.address %></td>
+        <td><%= employee.mobile_number %></td>
+        <td><%= employee.birth_date %></td>
+        <td><%= button_to "View", my_employee_path(employee), method: :get %></td>
+        <td><%= button_to "Edit", edit_my_employee_path(employee), method: :get %></td>
+        <td><%= button_to 'Remove', my_employee_path(employee), method: 'delete' %></td>
+        </tr>
+    <% end %>
+    <tr>
+        <td colspan="10" align="center"><%= button_to "Add new Employee", new_my_employee_path, method: :get %></td>
+    </tr>
+</table>
