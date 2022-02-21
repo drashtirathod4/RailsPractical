@@ -1,0 +1,23 @@
+<center>
+  <h1>Search Employees</h1>
+  
+  <%= form_tag search_path, method: :get do %>
+    <table cellpadding = "15px">
+      <tr>
+        <td><b>Search Employee : </b></td>
+        <td><%= text_field_tag :search, params[:query] %></td>
+        <td><%= submit_tag "Search" %></td>
+        <td><%= link_to "Back", search_path, method: :get %></td>
+      </tr>
+    </table>
+  <% end %><br>
+
+  <% if flash[:noitce] %>
+    <p style = "color:red"><%= notice %></p>
+  <% end %>
+
+  <%= render 'employees_table' %>
+
+  <br>
+  <b><%= link_to "Back", my_employees_path %></b>
+</center>
