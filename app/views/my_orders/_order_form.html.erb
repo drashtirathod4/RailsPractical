@@ -1,0 +1,24 @@
+<% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+        <p style = "color:red"><%= error %></p>
+    <% end %>
+<% end %>
+  
+<%= form_with(model: [@my_product, @my_order], local: true) do |form| %>
+    <h2><%= @my_product.title %></h2>
+    <table cellpadding="15px">
+        <tr>
+            <td><%= form.hidden_field :my_product_id %></td>
+        </tr>
+        <tr>
+            <td><%= form.label :quantity %></td>
+            <td><%= form.number_field :quantity %></td>
+        </tr>
+        <tr>
+            <td><%= form.submit %></td>
+        </tr>
+        <tr>
+            <td><b><%= link_to "Back", my_product_my_orders_path %></b></td>
+        </tr>
+    </table>
+<% end %>
