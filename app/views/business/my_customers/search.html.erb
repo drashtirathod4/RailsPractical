@@ -1,0 +1,21 @@
+<center>
+  <h1>Search Customer</h1>
+  <%= form_tag search_business_my_customers_path, method: :get do %>
+    <table cellpadding = "15px">
+      <tr>
+        <td><b>Search Customer : </b></td>
+        <td><%= text_field_tag :search, params[:search], placeholder: 'Customer name' %></td>
+        <td><%= submit_tag "Search" %></td>
+        <td><%= link_to "Back", search_business_my_customers_path, method: :get %></td>
+      </tr>
+    </table>
+  <% end %><br>
+
+  <% if flash[:noitce] %>
+    <p style = "color:red"><%= notice %></p>
+  <% end %>
+  <%= render 'customer_table' %>
+  
+  <br>
+  <b><%= link_to "Back", business_my_customers_path %></b>
+</center>

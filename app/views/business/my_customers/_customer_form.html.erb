@@ -1,0 +1,28 @@
+<% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+        <p style = "color:red"><%= error %></p>
+    <% end %>
+<% end %>
+  
+<%= form_with model: [:business, @my_customer] do |c| %>
+    <table cellpadding="15px">
+        <tr>
+            <td><%= c.label :name %></td>
+            <td><%= c.text_field :name, required: true %></td>
+        </tr>
+        <tr>
+            <td><%= c.label :email %></td>
+            <td><%= c.email_field :email, required: true %></td>
+        </tr>
+        <tr>
+            <td><%= c.label :phone %></td>
+            <td><%= c.text_field :phone, required: true %></td>
+        </tr>
+        <tr>
+            <td><%= c.submit %></td>
+        </tr>
+        <tr>
+            <td><b><%= link_to "Back", business_my_customers_path %></b></td>
+        </tr>
+    </table>
+<% end %>

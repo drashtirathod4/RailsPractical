@@ -1,10 +1,10 @@
 <center>
-  <h1>List of Orders</h1><br>
+    <h1>List of Orders</h1><br>
     <table cellpadding="15px" border="1px">
         <tr>
             <th>Product Name</th>
             <th>Quantity</th>
-            <%# <th>Total Price</th> %>
+            <th>Total Price</th>
             <th>View</th>
             <th>Edit</th>
             <th>Remove</th>
@@ -13,10 +13,10 @@
             <tr>
                 <td><b><%= order.my_product.title %></b></td>
                 <td><%= order.quantity %></td>
-                <%# <td><%= order.total_price %></td>
-                <td><%= button_to "View", my_product_my_order_path(1,order), method: :get %></td>
-                <td><%= button_to "Edit", edit_my_product_my_order_path(1,order), method: :get %></td>
-                <td><%= button_to 'Remove', my_product_my_order_path(1,order), method: 'delete' %></td>
+                <td><%= order.total_price %></td>
+                <td><%= button_to "View", my_product_my_order_path(@my_product,order), method: :get %></td>
+                <td><%= button_to "Edit", edit_my_product_my_order_path(@my_product,order), method: :get %></td>
+                <td><%= button_to 'Remove', my_product_my_order_path(@my_product,order), method: 'delete' %></td>
             </tr>
         <% end %>
         <tr>

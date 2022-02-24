@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_23_082617) do
+ActiveRecord::Schema.define(version: 2022_02_24_060733) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -156,6 +156,14 @@ ActiveRecord::Schema.define(version: 2022_02_23_082617) do
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable"
   end
 
+  create_table "my_customers", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "my_employees", force: :cascade do |t|
     t.string "employee_name"
     t.string "email"
@@ -175,6 +183,7 @@ ActiveRecord::Schema.define(version: 2022_02_23_082617) do
     t.integer "my_product_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "total_price"
     t.index ["my_product_id"], name: "index_my_orders_on_my_product_id"
   end
 

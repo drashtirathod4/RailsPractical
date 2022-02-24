@@ -5,14 +5,14 @@
 <% end %>
   
 <%= form_with(model: [@my_product, @my_order], local: true) do |form| %>
+    <h2><%= @my_product.title %></h2>
     <table cellpadding="15px">
         <tr>
-            <td><%= form.label :my_prodcut_id %></td>
-            <td><%= form.text_field :my_product_id %></td>
+            <td><%= form.hidden_field :my_product_id %></td>
         </tr>
         <tr>
             <td><%= form.label :quantity %></td>
-            <td><%= form.text_field :quantity %></td>
+            <td><%= form.number_field :quantity %></td>
         </tr>
         <tr>
             <td><%= form.submit %></td>

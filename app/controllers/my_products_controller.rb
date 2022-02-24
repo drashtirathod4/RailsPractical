@@ -1,17 +1,22 @@
 class MyProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+
+  # GET	/my_products
   def index
     @my_products = MyProduct.all
   end
 
+  # GET	/my_products/1
   def show
     @my_product = MyProduct.find(params[:id])
   end
 
+  # GET	/my_products/new
   def new
     @my_product = MyProduct.new
   end
 
+  # POST /my_products
   def create
     my_product = MyProduct.create(my_product_params)
     if my_product.valid?
@@ -22,10 +27,12 @@ class MyProductsController < ApplicationController
     end
   end
 
+  # GET	/my_products/1/edit
   def edit
     @my_product = MyProduct.find(params[:id])
   end
 
+  # PATCH/PUT	/my_products/1
   def update 
     @my_product = MyProduct.find(params[:id])
     @my_product.update(my_product_params)
@@ -37,6 +44,7 @@ class MyProductsController < ApplicationController
     end
   end
 
+  # DELETE	/my_products/1
   def destroy 
     @my_product = MyProduct.find(params[:id])
     @my_product.destroy 
@@ -44,6 +52,7 @@ class MyProductsController < ApplicationController
   end
 
   private 
+  # Use callbacks to share common setup or constraints between actions.
   def set_product
     @my_product = MyProduct.find(params[:id])
   end
