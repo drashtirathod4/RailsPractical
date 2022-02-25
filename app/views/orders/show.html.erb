@@ -1,0 +1,35 @@
+<center>
+    <h1>Order Details</h1><br>
+    <h2><%= @order.customer.fname %> <%= @order.customer.lname %> - <%= @order.product.title %></h2><br>
+    <table cellpadding="14px">
+        <tr>
+            <td><b>Product Name : </b></td>
+            <td><%= @order.product.title %></td>
+        </tr>
+        <tr>
+            <td><b>Customer Name : </b></td>
+            <td><%= @order.customer.fname %> <%= @order.customer.lname %></td>
+        </tr>
+        <tr>
+            <td><b>Customer Email : </b></td>
+            <td><%= @order.customer.email %></td>
+        </tr>
+        <tr>
+            <td><b>Customer Phone : </b></td>
+            <td><%= @order.customer.phone %></td>
+        </tr>
+        <tr>
+            <td><b>Quantity : </b></td>
+            <td><%= @order.quantity %></td>
+        </tr>
+        <tr>
+            <td><b>Total Price : </b></td>
+            <td><%= @order.total_price %></td>
+        </tr>
+        <tr>
+            <td><b>Status : </b></td>
+            <td><%= @order.status.capitalize %></td>
+        </tr>
+    </table><br><br>
+    <b><%= link_to "Back", orders_path %></b>
+</center>

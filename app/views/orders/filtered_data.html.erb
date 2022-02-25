@@ -1,0 +1,16 @@
+<center>
+    <h1>Filter Orders by Status</h1>
+    <%= form_tag orders_filtered_data_path, method: :get do %>
+        <table cellpadding = "15px">
+            <tr>
+                <td><b>Search Order by Status : </b></td>
+                <td><%= text_field_tag :status_search, params[:status_search] %></td>
+                <td><%= submit_tag "Search" %></td>
+                <td><%= link_to "Back", orders_filtered_data_path, method: :get %></td>
+            </tr>
+        </table>
+    <% end %>
+    <%= render 'orders' %>
+    <br><br>
+    <b><%= link_to "Back", orders_path %></b><br><br>
+</center>

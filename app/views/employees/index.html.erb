@@ -1,0 +1,45 @@
+<center>
+  <%= form_tag employees_path, method: :get do %>
+    <h1>List of Employees</h1>
+    <table cellpadding = "15px">
+      <tr>
+        <td><b>Search Employee : </b></td>
+        <td><%= email_field_tag :search, params[:search] %></td>
+        <td><%= submit_tag "Search" %></td>
+        <td><%= link_to "Back", employees_path, method: :get %></td>
+      </tr>
+    </table>
+  <% end %>
+  <b><%= link_to "Go to list of query Page", employees_list_path %></b><br><br>
+  <b><%= link_to "Seach by No of Order", employees_search_by_order_path %></b><br><br>
+
+  <table cellpadding="15px" border = "1px">
+    <tr>
+      <td><b>Employee Name</b></td>
+      <td><b>Email</b></td>
+      <td><b>Age</b></td>
+      <td><b>No of Order</b></td>
+      <td><b>Full Time</b></td>
+      <td><b>Salary</b></td>
+      <td><b>View</b></td>
+      <td><b>Edit</b></td>
+      <td><b>Remove</b></td>
+    </tr>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><b><%= employee.full_name %></b></td>
+        <td><%= employee.email %></td>
+        <td><%= employee.age %></td>
+        <td><%= employee.no_of_order %></td>
+        <td><%= employee.full_time_available %></td>
+        <td><%= employee.salary %></td>
+        <td><%= button_to "View", employee_path(employee), method: :get %></td>
+        <td><%= button_to "Edit", edit_employee_path(employee), method: :get %></td>
+        <td><%= button_to 'Remove', employee_path(employee), method: 'delete' %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="9" align="center"><%= button_to "Add new Employee", new_employee_path, method: :get %></td>
+    </tr>
+  </table><br><br>
+</center>

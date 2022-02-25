@@ -1,0 +1,25 @@
+<h1 align="center">List of Authors</h1>
+
+<table cellpadding="15px" border="1px" align="center">
+  <tr>
+      <td><b>Author Name</b></td>
+      <td><b>Author DOB</b></td>
+      <td><b>Author Email</b></td>
+      <td><b>View</b></td>
+      <td><b>Edit</b></td>
+      <td><b>Remove</b></td>
+    </tr>
+  <% @authors.each do |author| %>
+    <tr>
+      <td><b><%= author.fname %> <%= author.lname %></b></td>
+      <td><%= author.dob %></td>
+      <td><%= author.email %></td>
+      <td><%= button_to "View", author_path(author), method: :get %></td>
+      <td><%= button_to "Edit", edit_author_path(author), method: :get %></td>
+      <td><%= button_to 'Remove', author_path(author), method: 'delete' %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td colspan="6" align="center"><%= button_to "Add new Author", new_author_path, method: :get%></td>
+  </tr>
+</table>

@@ -1,0 +1,10 @@
+<center>
+    <h1>Add Order</h1>
+    <% if flash[:errors] %>
+        <% flash[:errors].each do |error| %>
+            <p style = "color:red"><%= error %></p>
+        <% end %>
+    <% end %>
+
+    <%= render 'order_form' %>
+</center>

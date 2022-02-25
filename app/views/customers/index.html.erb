@@ -1,0 +1,26 @@
+<center>
+    <h1>List of Customers</h1><br>
+    <table cellpadding="15px" border="1px">
+        <tr>
+            <th>Customer Name</th>
+            <th>Email</th>
+            <th>Phone no</th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Remove</th>
+        </tr>
+        <% @customers.each do |customer| %>
+            <tr>
+                <td><b><%= customer.fname %> <%= customer.lname %></b></td>
+                <td><%= customer.email %></td>
+                <td><%= customer.phone %></td>
+                <td><%= button_to "View", customer_path(customer), method: :get %></td>
+                <td><%= button_to "Edit", edit_customer_path(customer), method: :get %></td>
+                <td><%= button_to 'Remove', customer_path(customer), method: 'delete' %></td>
+            </tr>
+        <% end %>
+        <tr>
+            <td colspan="6" align="center"><%= button_to "Add new Customer", new_customer_path, method: :get %></td>
+        </tr>
+    </table>
+</center>
