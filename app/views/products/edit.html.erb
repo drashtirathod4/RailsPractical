@@ -1,44 +1,4 @@
 <center>
   <h1>Edit Product Details</h1>
-
-  <% if flash[:errors] %>
-    <% flash[:errors].each do |error| %>
-      <p style = "color:red"><%= error %></p>
-    <% end %>
-  <% end %>
-
-  <%= form_for @product do |p| %>
-    <table cellpadding="15px">
-      <tr>
-        <td><%= p.label :title %></td>
-        <td><%= p.text_field :title %></td>
-      </tr>
-      <tr>
-        <td><%= p.label :description %></td>
-        <td><%= p.text_field :description %></td>
-      </tr>
-      <tr>
-        <td><%= p.label :price %></td>
-        <td><%= p.text_field :price %></td>
-      </tr>
-      <tr>
-        <td><%= p.label :capacity %></td>
-        <td><%= p.text_field :capacity %></td>
-      </tr>
-      <tr>
-        <td><%= p.label :is_active %></td>
-        <td><%= p.check_box :is_active, {}, true, false %></td>
-      </tr>
-      <tr>
-        <td><%= p.label :status %></td>
-        <td><%= p.select :status, options_for_select(Product.statuses.map {|key, value| [key.titleize, Product.statuses.key(value)]}, @product.status) %></td>
-      </tr>
-      <tr>
-        <td><%= p.submit %></td>
-      </tr>
-      <tr>
-        <td><b><%= link_to "Back", products_path %></b></td>
-      </tr>
-    </table>
-  <% end %>
+  <%= render 'product_form' %>
 </center>

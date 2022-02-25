@@ -51,11 +51,11 @@ class OrdersController < ApplicationController
   end
 
   def most_booked_order_of_product
-    @orders = Order.group(:customer_id).where(status: "booked").limit(5)
+    @orders = Order.order_group("booked")
   end
 
   def most_cancelled_order_of_product
-    @orders = Order.group(:customer_id).where(status: "cancelled").limit(5)
+    @orders = Order.order_group("cancelled")
   end
 
   def filtered_data

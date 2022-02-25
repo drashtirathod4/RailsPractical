@@ -1,36 +1,4 @@
 <center>
     <h1>Edit Customer Details</h1>
-
-    <% if flash[:errors] %>
-        <% flash[:errors].each do |error| %>
-            <p style = "color:red"><%= error %></p>
-        <% end %>
-    <% end %>
-
-    <%= form_for @customer do |c| %>
-        <table cellpadding="15px">
-            <tr>
-                <td><%= c.label :first_name %></td>
-                <td><%= c.text_field :fname %></td>
-            </tr>
-            <tr>
-                <td><%= c.label :last_name %></td>
-                <td><%= c.text_field :lname %></td>
-            </tr>
-            <tr>
-                <td><%= c.label :email %></td>
-                <td><%= c.email_field :email %></td>
-            </tr>
-            <tr>
-                <td><%= c.label :phone_number %></td>
-                <td><%= c.text_field :phone %></td>
-            </tr>
-            <tr>
-                <td><%= c.submit %></td>
-            </tr>
-            <tr>
-                <td><b><%= link_to "Back", customers_path %></b></td>
-            </tr>
-        </table>
-    <% end %>
+    <%= render 'customer_form' %>
 </center>

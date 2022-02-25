@@ -38,4 +38,9 @@ class Order < ApplicationRecord
             Order.unscoped.all
         end
     end
+
+    # For grouping orders based on their status
+    def self.order_group(status)
+        Order.group(:customer_id).where(status: status).limit(5)
+    end
 end
