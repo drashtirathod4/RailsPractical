@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_24_060733) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_02_28_081434) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", precision: 6, null: false
+    t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -30,7 +29,7 @@ ActiveRecord::Schema.define(version: 2022_02_24_060733) do
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
     t.string "checksum"
-    t.datetime "created_at", precision: 6, null: false
+    t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -45,8 +44,8 @@ ActiveRecord::Schema.define(version: 2022_02_24_060733) do
     t.string "addressable_type"
     t.integer "addressable_id"
     t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable"
     t.index ["user_id"], name: "index_addresses_on_user_id", unique: true
   end
@@ -56,8 +55,8 @@ ActiveRecord::Schema.define(version: 2022_02_24_060733) do
     t.string "lname"
     t.date "dob"
     t.string "email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "authors_books", id: false, force: :cascade do |t|
@@ -70,16 +69,16 @@ ActiveRecord::Schema.define(version: 2022_02_24_060733) do
   create_table "books", force: :cascade do |t|
     t.string "name"
     t.decimal "price", precision: 5, scale: 2
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "author_id", null: false
     t.index ["author_id"], name: "index_books_on_author_id"
   end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -88,8 +87,8 @@ ActiveRecord::Schema.define(version: 2022_02_24_060733) do
     t.integer "like"
     t.string "commentable_type"
     t.integer "commentable_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
   end
 
@@ -98,16 +97,16 @@ ActiveRecord::Schema.define(version: 2022_02_24_060733) do
     t.string "lname"
     t.string "email"
     t.string "phone"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "emp_addresses", force: :cascade do |t|
     t.string "house_name"
     t.string "street_name"
     t.string "road"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "my_employee_id", null: false
     t.index ["my_employee_id"], name: "index_emp_addresses_on_my_employee_id"
   end
@@ -120,16 +119,16 @@ ActiveRecord::Schema.define(version: 2022_02_24_060733) do
     t.integer "no_of_order"
     t.boolean "full_time_available"
     t.decimal "salary"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.date "event_date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "category_id"
     t.index ["category_id"], name: "index_events_on_category_id"
@@ -143,16 +142,16 @@ ActiveRecord::Schema.define(version: 2022_02_24_060733) do
     t.string "email"
     t.date "dob"
     t.string "designation"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "images", force: :cascade do |t|
     t.string "name"
     t.string "imageable_type"
     t.integer "imageable_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable"
   end
 
@@ -160,8 +159,8 @@ ActiveRecord::Schema.define(version: 2022_02_24_060733) do
     t.string "name"
     t.string "email"
     t.string "phone"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "my_employees", force: :cascade do |t|
@@ -174,15 +173,15 @@ ActiveRecord::Schema.define(version: 2022_02_24_060733) do
     t.string "mobile_number"
     t.date "birth_date"
     t.string "document"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "my_orders", force: :cascade do |t|
     t.integer "quantity"
     t.integer "my_product_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.decimal "total_price"
     t.index ["my_product_id"], name: "index_my_orders_on_my_product_id"
   end
@@ -191,16 +190,31 @@ ActiveRecord::Schema.define(version: 2022_02_24_060733) do
     t.string "title"
     t.text "description"
     t.decimal "price"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "my_users", force: :cascade do |t|
+    t.string "name"
+    t.string "phone"
+    t.string "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_my_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_my_users_on_reset_password_token", unique: true
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer "quantity"
     t.decimal "total_price"
     t.integer "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "product_id", null: false
     t.integer "customer_id", null: false
     t.index ["customer_id"], name: "index_orders_on_customer_id"
@@ -210,8 +224,8 @@ ActiveRecord::Schema.define(version: 2022_02_24_060733) do
   create_table "products", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.decimal "price"
     t.string "capacity"
     t.boolean "is_active"
@@ -221,8 +235,8 @@ ActiveRecord::Schema.define(version: 2022_02_24_060733) do
   create_table "registers", force: :cascade do |t|
     t.integer "user_id"
     t.integer "event_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_registers_on_event_id"
     t.index ["user_id"], name: "index_registers_on_user_id"
   end
@@ -233,8 +247,8 @@ ActiveRecord::Schema.define(version: 2022_02_24_060733) do
     t.date "dob"
     t.string "department"
     t.boolean "terms_of_usage"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -243,8 +257,8 @@ ActiveRecord::Schema.define(version: 2022_02_24_060733) do
     t.string "email"
     t.string "phone"
     t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

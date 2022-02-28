@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  root to: 'home#index'
+  devise_for :my_users
+  resources :my_users
+
+  # root to: "my_users#index"
+  
   namespace :business do
     resources :my_customers, only: [:create, :edit, :index] do
       member do
@@ -15,7 +21,7 @@ Rails.application.routes.draw do
     resources :my_orders
   end
   
-  root "my_products#index"
+  # root "my_products#index"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

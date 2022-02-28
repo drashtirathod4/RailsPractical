@@ -27,8 +27,6 @@
             <th>Quantity</th>
             <th>Total Price</th>
             <th>View</th>
-            <th>Edit</th>
-            <th>Remove</th>
         </tr>
         <% @my_product.my_orders.each do |order| %>
             <tr>
@@ -36,11 +34,7 @@
                 <td><%= order.quantity %></td>
                 <td><%= order.total_price %></td>
                 <td><%= button_to "View", my_product_my_order_path(@my_product,order), method: :get %></td>
-                <td><%= button_to "Edit", edit_my_product_my_order_path(@my_product,order), method: :get %></td>
-                <td><%= button_to 'Remove', my_product_my_order_path(@my_product,order), method: 'delete' %></td>
             </tr>
         <% end %>
     </table><br>
-
-    <b><%= link_to "Back", my_products_path %></b><br><br>
 </center>
