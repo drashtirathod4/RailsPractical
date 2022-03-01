@@ -2,8 +2,6 @@ Rails.application.routes.draw do
   root to: 'home#index'
   devise_for :my_users
   resources :my_users
-
-  # root to: "my_users#index"
   
   namespace :business do
     resources :my_customers, only: [:create, :edit, :index] do

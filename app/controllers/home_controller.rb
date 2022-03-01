@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  # GET	/
   def index
     if current_my_user and current_my_user.role == 'Admin'
       render :layout => 'admin'

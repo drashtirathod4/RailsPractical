@@ -1,4 +1,6 @@
 class MyOrdersController < ApplicationController
+  before_action :auth_admin, except: [:show]
+  before_action :authenticate_my_user!
   before_action :get_product
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
