@@ -1,0 +1,23 @@
+<table cellpadding="15px" border="1px">
+    <tr>
+        <th>Cutomer Name</th>
+        <th>Email</th>
+        <th>Phone no</th>
+        <th>View</th>
+        <th>Edit</th>
+        <th>Remove</th>
+    </tr>
+    <% @my_customers.each do |customer| %>
+        <tr>
+            <td><b><%= customer.name %></b></td>
+            <td><%= customer.email %></td>
+            <td><%= customer.phone %></td>
+            <td><%= button_to "View", preview_business_my_customer_path(customer), method: :get %></td>
+            <td><%= button_to "Edit", edit_business_my_customer_path(customer), method: :get %></td>
+            <td><%= button_to "Remove", delete_customer_business_my_customer_path(customer), method: :delete %></td>
+        </tr>
+    <% end %>
+    <tr>
+        <td colspan="6" align="center"><%= button_to "Add new Customer", new_business_my_customers_path, method: :get %></td>
+    </tr>
+</table>

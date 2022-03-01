@@ -1,0 +1,19 @@
+<center>
+    <h1>Customer Details</h1><br>
+    <h2><%= @my_customer.name %></h2><br>
+    <table cellpadding="14px">
+        <tr>
+            <td><b>Customer Name : </b></td>
+            <td><%= @my_customer.name %></td>
+        </tr>
+        <tr>
+            <td><b>Email : </b></td>
+            <td><%= @my_customer.email %></td>
+        </tr>
+        <tr>
+            <td><b>Phone Number : </b></td>
+            <td><%= @my_customer.phone %></td>
+        </tr>
+    </table><br><br>
+    <b><%= link_to "Back", business_my_customers_path %></b>
+</center>
