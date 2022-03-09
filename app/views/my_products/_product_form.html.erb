@@ -7,6 +7,9 @@
 <%= form_for @my_product do |p| %>
     <table cellpadding="15px">
         <tr>
+            <td><%= p.hidden_field :my_user_id %></td>
+        </tr>
+        <tr>
             <td><%= p.label :title %></td>
             <td><%= p.text_field :title %></td>
         </tr>

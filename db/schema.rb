@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_28_081434) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_09_060056) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -48,6 +48,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_28_081434) do
     t.datetime "updated_at", null: false
     t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable"
     t.index ["user_id"], name: "index_addresses_on_user_id", unique: true
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.string "body"
+    t.date "release_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "articles_comments", force: :cascade do |t|
+    t.string "comment"
+    t.date "date_of_comment"
+    t.integer "article_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_articles_comments_on_article_id"
   end
 
   create_table "authors", force: :cascade do |t|
@@ -179,7 +196,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_28_081434) do
 
   create_table "my_orders", force: :cascade do |t|
     t.integer "quantity"
-    t.integer "my_product_id", null: false
+    t.integer "my_product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "total_price"
@@ -192,6 +209,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_28_081434) do
     t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "my_user_id"
+    t.index ["my_user_id"], name: "index_my_products_on_my_user_id"
   end
 
   create_table "my_users", force: :cascade do |t|
@@ -264,11 +283,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_28_081434) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "users"
+  add_foreign_key "articles_comments", "articles"
   add_foreign_key "books", "authors"
   add_foreign_key "emp_addresses", "my_employees"
   add_foreign_key "events", "categories"
   add_foreign_key "events", "users"
   add_foreign_key "my_orders", "my_products"
+  add_foreign_key "my_products", "my_users"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "products"
   add_foreign_key "registers", "events"
