@@ -36,4 +36,16 @@ class MyProductsControllerTest < ActionDispatch::IntegrationTest
     get edit_my_product_path(@product.id)
     assert_response :success
   end
+
+  test "should create product" do
+    assert_difference("MyProduct.count") do
+      post my_products_path, params: {my_product: {title: "def", description: "descripionnnn", price: "600", my_user_id: @user.id}}
+    end
+    assert_redirected_to my_products_path
+  end
+
+  test "should delete product" do
+    delete "/my_products/#{@product.id}"
+    assert(MyProduct.find_by(title: "abc")).to be_nil
+  end
 end
