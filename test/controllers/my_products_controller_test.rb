@@ -32,11 +32,6 @@ class MyProductsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get edit" do
-    get edit_my_product_path(@product.id)
-    assert_response :success
-  end
-
   test "should create product" do
     assert_difference("MyProduct.count") do
       post my_products_path, params: {my_product: {title: "def", description: "descripionnnn", price: "600", my_user_id: @user.id}}
@@ -44,8 +39,22 @@ class MyProductsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to my_products_path
   end
 
+  test "should get edit" do
+    get edit_my_product_path(@product.id)
+    assert_response :success
+  end
+
+  test "should update product" do
+    patch "/my_products/#{@product.id}", params: {my_product: {title: "Updated title"} }
+    assert_equal "Updated title", assigns(:my_product).title
+    # @p = MyProduct.find_by_title("Updated title")
+    # get my_product_path(@p.id)
+    # assert_response :success
+  end
+
   test "should delete product" do
     delete "/my_products/#{@product.id}"
-    assert(MyProduct.find_by(title: "abc")).to be_nil
+    follow_redirect!
+    assert_nil assigns(:my_product)
   end
 end
