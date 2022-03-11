@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Merchant</title>
+  </head>
+
+  <body align = "center">
+    <p class="notice" style="color: red"><%= notice %></p>
+    <p class="alert" style="color: red"><%= alert %></p>
+    <h1>Merchant Page</h1><hr>
+    
+    <%= yield %>
+    
+    <h1>List of Products</h1><br>
+    <table cellpadding="15px" border="1px" align="center">
+      <tr>
+        <th>Product Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>View</th>
+      </tr>
+      <% MyProduct.all.each do |product| %>
+        <tr>
+          <td><b><%= product.title %></b></td>
+          <td><%= product.description %></td>
+          <td><%= product.price %></td>
+          <td><%= button_to "View", my_product_path(product), method: :get %></td>
+        </tr>
+      <% end %>
+    </table><br>
+  </body>
+</html>

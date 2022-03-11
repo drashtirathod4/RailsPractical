@@ -1,0 +1,2 @@
+module MyCustomersHelper
+end

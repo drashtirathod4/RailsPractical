@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin</title>
+  </head>
+
+  <body align = "center">
+    <p class="notice" style="color: red"><%= notice %></p>
+    <p class="alert" style="color: red"><%= alert %></p>
+    <h1>Admin Page</h1><hr>
+    <%= yield %>
+    <h2><%= link_to "Go to Products Path ", my_products_path %></h2>
+  </body>
+</html>

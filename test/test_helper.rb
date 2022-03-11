@@ -10,4 +10,16 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  include Devise::Test::IntegrationHelpers
+  include Warden::Test::Helpers
+
+  def log_in(my_user)
+    if integration_test?
+      # use warden helper
+      login_as(my_user, :scope => :my_user)
+    else #controller_test, model_test
+      # use devise helper
+      sign_in(my_user)
+    end
+  end
 end
