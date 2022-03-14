@@ -1,0 +1,81 @@
+<% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+        <p style = "color:red"><%= error %></p>
+    <% end %>
+<% end %>
+  
+<%= form_with(model: @user, local: false, html: { onsubmit: 'return verifyPassword();' }) do |form| %>
+    <table cellpadding="15px">
+        <tr>
+            <td><%= form.label :first_name %></td>
+            <td><%= form.text_field :first_name %></td>
+        </tr>
+        <tr>
+            <td><%= form.label :last_name %></td>
+            <td><%= form.text_field  :last_name %></td>
+        </tr>
+        <tr>
+            <td><%= form.label :email %></td>
+            <td><%= form.email_field :email %></td>
+        </tr>
+        <tr>
+            <td><%= form.label :password %></td>
+            <td>
+                <span ><%= form.password_field :password, id:"pwd1" %></span>
+                <span id = "message" style="color:red"> </span>
+            </td>
+        </tr>
+        <tr>
+            <td><%= form.label :password_confirmation %></td>
+            <td><%= form.password_field :password_confirmation, id:"pwd2" %></td>
+        </tr>
+        <tr>
+            <td><%= form.label :subscribe %></td>
+            <td><%= form.check_box :subscription %></td>
+        </tr>
+        <tr>
+            <td><%= form.label :subscription_email %></td>
+            <td><%= form.text_area :subscription_email %></td>
+        </tr>
+        <tr>
+            <td><%= form.submit %></td>
+        </tr>
+        <tr>
+            <td><b><%= link_to "Back", myusers_path %></b></td>
+        </tr>
+    </table>
+<% end %>
+
+<script>
+    function verifyPassword() { 
+        var pw1 = document.getElementById("pwd1").value; 
+        var pw2 = document.getElementById("pwd2");   
+        console.log(pw1)
+        //check empty password field  
+        if(pw1 == "") {  
+            document.getElementById("message").innerHTML = "**Fill the password please!";  
+            return false;  
+        }
+
+        //minimum password length validation  
+        if(pw1.length < 7) {  
+            document.getElementById("message").innerHTML = "**Password length must be atleast 8 characters";  
+            return false; 
+        }  
+    
+        //maximum length of password validation  
+        if(pw1.length > 15) {  
+            document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";  
+            return false;  
+        }
+        
+        if(pw1 != pw2)  {
+            console.log(pw1)
+            console.log(pw1)
+            document.getElementById("message").innerHTML = "**Password & confirm password doesn't match!";
+            return false;  
+        } else {
+            alert("Password is correct");  
+        }
+    }  
+</script>

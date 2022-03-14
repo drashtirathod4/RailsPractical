@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :myusers do
+    member do
+      get 'profile'
+      # get '/:id', to: 'profiles#show', as: :myprofile
+      # match 'myusers/:id/profile' => 'myusers#profile', :via => :get, :as => :profile
+    end
+  end
+  # match 'myusers/:id/profile' => 'myusers#edit', :via => :get, :as => :profile
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

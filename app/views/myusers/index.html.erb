@@ -1,0 +1,28 @@
+<center>
+    <h1>List of Users</h1><br>
+    <table cellpadding="15px" border="1px">
+        <tr>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Subscription</th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Profile</th>
+            <th>Remove</th>
+        </tr>
+        <% @users.each do |user| %>
+            <tr>
+                <td><b><%= user.full_name %></b></td>
+                <td><%= user.email %></td>
+                <td><%= user.subscription %></td>
+                <td><%= button_to "View", myuser_path(user), method: :get %></td>
+                <td><%= button_to "Edit", edit_myuser_path(user), method: :get %></td>
+                <td><%= button_to "Profile", profile_myuser_path(user), method: :get %></td>
+                <td><%= button_to 'Remove', myuser_path(user), method: 'delete' %></td>
+            </tr>
+        <% end %>
+        <tr>
+            <td colspan="7" align="center"><%= button_to "Add new User", new_myuser_path, method: :get %></td>
+        </tr>
+    </table>
+</center>
