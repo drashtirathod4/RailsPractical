@@ -4,7 +4,7 @@
     <% end %>
 <% end %>
   
-<%= form_with(model: @user, local: false, html: { onsubmit: 'return verifyPassword();' }) do |form| %>
+<%= form_with(model: @user, local: false) do |form| %>
     <table cellpadding="15px">
         <tr>
             <td><%= form.label :first_name %></td>
@@ -21,61 +21,60 @@
         <tr>
             <td><%= form.label :password %></td>
             <td>
-                <span ><%= form.password_field :password, id:"pwd1" %></span>
-                <span id = "message" style="color:red"> </span>
+                <%= form.password_field :password, id:"pwd1", onchange:"PassCheck()" %>
+                <br><span id = "message" style="color:red"> </span>
             </td>
         </tr>
         <tr>
             <td><%= form.label :password_confirmation %></td>
-            <td><%= form.password_field :password_confirmation, id:"pwd2" %></td>
+            <td>
+                <%= form.password_field :password_confirmation, id:"pwd2", onchange:"PassCheck()"%>
+                <br><span id = "message1" style="color:red"> </span>    
+            </td>
         </tr>
         <tr>
             <td><%= form.label :subscribe %></td>
-            <td><%= form.check_box :subscription %></td>
+            <td><span id="myCheck"  onclick="addbox();"><%= form.check_box :subscription %></span></td>
         </tr>
-        <tr>
+        <tr id="area" style="display: none;">
             <td><%= form.label :subscription_email %></td>
             <td><%= form.text_area :subscription_email %></td>
         </tr>
-        <tr>
-            <td><%= form.submit %></td>
-        </tr>
-        <tr>
-            <td><b><%= link_to "Back", myusers_path %></b></td>
-        </tr>
     </table>
+    <div id="button" style="display:none;"><%= form.submit %></div><br>
+    <b><%= link_to "Back", myusers_path %></b>
 <% end %>
 
-<script>
-    function verifyPassword() { 
-        var pw1 = document.getElementById("pwd1").value; 
-        var pw2 = document.getElementById("pwd2");   
-        console.log(pw1)
-        //check empty password field  
-        if(pw1 == "") {  
-            document.getElementById("message").innerHTML = "**Fill the password please!";  
-            return false;  
+<script>    
+    // task 2
+    document.getElementById("myCheck").addEventListener("click", function() {
+        toggle('area');
+    });
+
+    function toggle(obj) {
+        var el = document.getElementById(obj);
+        el.style.display = (el.style.display != 'none' ? 'none' : '' );
+    }
+
+    // for password validation
+    function PassCheck() {
+        var password = document.getElementById('pwd1');
+        var vpassword = document.getElementById('pwd2');
+        var regularExpression  = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        
+        if(!regularExpression.test(password)) {
+            document.getElementById("message").innerHTML=
+                "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character";
+            }else{
+                document.getElementById("message").innerHTML=""
         }
 
-        //minimum password length validation  
-        if(pw1.length < 7) {  
-            document.getElementById("message").innerHTML = "**Password length must be atleast 8 characters";  
-            return false; 
-        }  
-    
-        //maximum length of password validation  
-        if(pw1.length > 15) {  
-            document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";  
-            return false;  
+        if (password.value != vpassword.value) {
+            document.getElementById("button").style.display = "none";
+            document.getElementById("message1").innerHTML="Password and confirm Password must be same!";
         }
-        
-        if(pw1 != pw2)  {
-            console.log(pw1)
-            console.log(pw1)
-            document.getElementById("message").innerHTML = "**Password & confirm password doesn't match!";
-            return false;  
-        } else {
-            alert("Password is correct");  
+        else {
+            document.getElementById("button").style.display = "block";
         }
-    }  
+    }
 </script>

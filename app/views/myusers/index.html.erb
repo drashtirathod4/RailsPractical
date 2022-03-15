@@ -6,8 +6,8 @@
             <th>Email</th>
             <th>Subscription</th>
             <th>View</th>
-            <th>Edit</th>
-            <th>Profile</th>
+            <th>Edit Profile</th>
+            <th>Change Password</th>
             <th>Remove</th>
         </tr>
         <% @users.each do |user| %>
@@ -16,9 +16,9 @@
                 <td><%= user.email %></td>
                 <td><%= user.subscription %></td>
                 <td><%= button_to "View", myuser_path(user), method: :get %></td>
-                <td><%= button_to "Edit", edit_myuser_path(user), method: :get %></td>
-                <td><%= button_to "Profile", profile_myuser_path(user), method: :get %></td>
-                <td><%= button_to 'Remove', myuser_path(user), method: 'delete' %></td>
+                <td><%= button_to "Edit Profile", profile_path(user), method: :get %></td>
+                <td><%= button_to "Change Password", change_password_myuser_path(user), method: :get %></td>
+                <td><%= button_to 'Remove', myuser_path(user), method: 'delete', form: {data: {turbo_confirm: 'Are you sure?'}} %></td>
             </tr>
         <% end %>
         <tr>

@@ -32,7 +32,7 @@ class MyusersController < ApplicationController
       redirect_to myuser_path
     else 
       flash[:errors] = @user.errors.full_messages
-      redirect_to edit_myuser_path(@user)
+      redirect_to profile_path(@user)
     end
   end
 
@@ -42,8 +42,20 @@ class MyusersController < ApplicationController
     redirect_to myusers_path
   end
 
-  def profile 
+  def change_password 
     @user = Myuser.find(params[:id])
+  end
+
+  def password_update
+    @user = Myuser.find(params[:id])
+    if @user.update(:password => params[:myuser][:password], :password_confirmation => params[:myuser][:password_confirmation])
+      flash[:notice] = 'Password was changed successfully.'
+    else
+      flash[:error]=[]
+      @user.errors.full_messages.each do |error|
+        flash[:error] << error
+      end
+    end
   end
 
   private
