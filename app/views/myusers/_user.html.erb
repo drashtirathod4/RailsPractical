@@ -1,0 +1,30 @@
+<% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+      <p style="color:red;"><%= error %></p>
+    <% end %>
+<% end %>
+<p style="color:green"> <%=notice%> </p>
+
+<h2><%= user.full_name %></h2><br>
+<table cellpadding="14px">
+    <tr>
+        <td><b>User First Name : </b></td>
+        <td><%= user.first_name %></td>
+    </tr>
+    <tr>
+        <td><b>User Last Name : </b></td>
+        <td><%= user.last_name %></td>
+    </tr>
+    <tr>
+        <td><b>Email : </b></td>
+        <td><%= user.email %></td>
+    </tr>
+    <tr>
+        <td><b>Subscription : </b></td>
+        <td><%= user.subscription %></td>
+    </tr>
+    <tr>
+        <td><b>Subscription Email : </b></td>
+        <td><%= user.subscription_email %></td>
+    </tr>
+</table><br><br><br>

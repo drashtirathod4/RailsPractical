@@ -1,19 +1,24 @@
 class MyusersController < ApplicationController
+  # GET	/myusers
   def index
     @users = Myuser.all
   end
 
+  # GET	/myusers/1
   def show
     @user = Myuser.find(params[:id])
   end
 
+  # GET	/myusers/new
   def new
     @user = Myuser.new
   end
 
+  # POST	/myusers
   def create 
     @user = Myuser.create(myuser_params)
     if @user.valid?
+      flash[:notice] = 'User created successfully!'
       redirect_to myusers_path
     else 
       flash[:errors] = @user.errors.full_messages
@@ -21,40 +26,52 @@ class MyusersController < ApplicationController
     end
   end
 
+  # GET	/myusers/1/profile
   def edit
     @user = Myuser.find(params[:id])
   end
 
+  # PATCH/PUT	/myusers/1
   def update 
     @user = Myuser.find(params[:id])
+    @user_data = Myuser.find_by_id(@user)
     @user.update(myuser_params)
     if @user.valid?
-      redirect_to myuser_path
+      respond_to do |format|
+        flash.now[:notice] = "Profile updated successfully"
+        format.js 
+      end
     else 
-      flash[:errors] = @user.errors.full_messages
-      redirect_to profile_path(@user)
+      respond_to do |format|
+        flash.now[:errors] =  @user.errors.full_messages
+        format.js
+        format.html { render :edit, status: :unprocessable_entity }
+      end
     end
   end
 
+  # DELETE	/myusers/1
   def destroy 
     @user = Myuser.find(params[:id])
     @user.destroy 
+    flash[:notice] = 'User removed successfully.'
     redirect_to myusers_path
   end
 
+  # GET	/myusers/1/change_password
   def change_password 
     @user = Myuser.find(params[:id])
   end
 
+  # PATCH	/myusers/1/password_update
   def password_update
     @user = Myuser.find(params[:id])
-    if @user.update(:password => params[:myuser][:password], :password_confirmation => params[:myuser][:password_confirmation])
+    if @user.update_attribute(:password,params[:myuser][:password])
       flash[:notice] = 'Password was changed successfully.'
+      redirect_to myuser_path(@user)
     else
-      flash[:error]=[]
-      @user.errors.full_messages.each do |error|
-        flash[:error] << error
-      end
+      flash[:errors] = @user.errors.full_messages
+      redirect_to password_update_myuser_path(@user)
     end
   end
 

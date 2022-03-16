@@ -28,17 +28,25 @@
                 <td><%= form.label :subscribe %></td>
                 <td><span id="myCheck"  onclick="addbox();"><%= form.check_box :subscription %></span></td>
             </tr>
-            <tr id="area" style="display: none;">
+            <tr >
                 <td><%= form.label :subscription_email %></td>
-                <td><%= form.text_area :subscription_email %></td>
+                <% if @user.subscription%>
+                    <td><%= form.email_field :subscription_email, id:"area" %></td>
+                <% else %>
+                    <td><%= form.email_field :subscription_email, id:"area", style:"display:none;" %></td>
+                <% end %>
             </tr>
         </table>
+        
         <div id="button"><%= form.submit data: { disable_with: "Saving..." } %></div><br>
         <b><%= link_to "Back", myusers_path %></b>
-    <% end %>
+    <% end %><br>
+    
+    <div id="result">
+    </div>
 
-    <script>   
-        // task 1
+    <script>
+        // For display password field when user changes email
         function emailChange() {
             var email = document.getElementById('email').value;
             var value = "<%= @user.email %>";
@@ -47,7 +55,7 @@
             }
         }
 
-        // task 2
+        // For display subscription_email field when user check subscribe box
         document.getElementById("myCheck").addEventListener("click", function() {
             toggle('area');
         });
@@ -55,6 +63,6 @@
         function toggle(obj) {
             var el = document.getElementById(obj);
             el.style.display = (el.style.display != 'none' ? 'none' : '' );
-        }
+        }        
     </script>
 </center>

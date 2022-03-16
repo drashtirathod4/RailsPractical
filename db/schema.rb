@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_14_043327) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_16_055450) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -234,7 +234,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_043327) do
     t.string "email"
     t.string "password"
     t.boolean "subscription"
-    t.text "subscription_email"
+    t.string "subscription_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
