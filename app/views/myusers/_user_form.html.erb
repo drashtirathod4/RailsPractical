@@ -1,0 +1,80 @@
+<% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+        <p style = "color:red"><%= error %></p>
+    <% end %>
+<% end %>
+  
+<%= form_with(model: @user) do |form| %>
+    <table cellpadding="15px">
+        <tr>
+            <td><%= form.label :first_name %></td>
+            <td><%= form.text_field :first_name %></td>
+        </tr>
+        <tr>
+            <td><%= form.label :last_name %></td>
+            <td><%= form.text_field  :last_name %></td>
+        </tr>
+        <tr>
+            <td><%= form.label :email %></td>
+            <td><%= form.email_field :email %></td>
+        </tr>
+        <tr>
+            <td><%= form.label :password %></td>
+            <td>
+                <%= form.password_field :password, id:"pwd1", onchange:"PassCheck()" %>
+                <br><span id = "message" style="color:red"> </span>
+            </td>
+        </tr>
+        <tr>
+            <td><%= form.label :password_confirmation %></td>
+            <td>
+                <%= form.password_field :password_confirmation, id:"pwd2", onchange:"PassCheck()"%>
+                <br><span id = "message1" style="color:red"> </span>    
+            </td>
+        </tr>
+        <tr>
+            <td><%= form.label :subscribe %></td>
+            <td><span id="myCheck"  onclick="addbox();"><%= form.check_box :subscription %></span></td>
+        </tr>
+        <tr id="area" style="display: none;">
+            <td><%= form.label :subscription_email %></td>
+            <td><%= form.email_field :subscription_email %></td>
+        </tr>
+    </table>
+    <div id="button" style="display:none;"><%= form.submit %></div><br>
+    <b><%= link_to "Back", myusers_path %></b>
+<% end %>
+
+<script>    
+    // For display subscription_email field when user check subscribe box
+    document.getElementById("myCheck").addEventListener("click", function() {
+        toggle('area');
+    });
+
+    function toggle(obj) {
+        var el = document.getElementById(obj);
+        el.style.display = (el.style.display != 'none' ? 'none' : '' );
+    }
+
+    // For password validation
+    function PassCheck() {
+        var password = document.getElementById('pwd1');
+        var vpassword = document.getElementById('pwd2');
+        var regularExpression  = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        
+        if(!regularExpression.test(password)) {
+            document.getElementById("message").innerHTML=
+                "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character";
+            }else{
+                document.getElementById("message").innerHTML=""
+        }
+
+        if (password.value != vpassword.value) {
+            document.getElementById("button").style.display = "none";
+            document.getElementById("message1").innerHTML="Password and confirm Password must be same!";
+        }
+        else {
+            document.getElementById("button").style.display = "block";
+        }
+    }
+</script>

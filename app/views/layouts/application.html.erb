@@ -11,6 +11,9 @@
   </head>
 
   <body>
+    <% if flash[:notice] %>
+      <center><p style = "color:green;"><%= notice %></p></center>
+    <% end %>
     <%= yield %>
   </body>
 </html>
