@@ -1,0 +1,24 @@
+<center>
+    <h1>List of Users</h1><br>
+    <table cellpadding="15px" border="1px">
+        <tr>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Remove</th>
+        </tr>
+        <% @users.each do |user| %>
+            <tr>
+                <td><b><%= user.name %></b></td>
+                <td><%= user.email %></td>
+                <td><%= button_to "View", mail_user_path(user), method: :get %></td>
+                <td><%= button_to "Edit", edit_mail_user_path(user), method: :get %></td>
+                <td><%= button_to 'Remove', mail_user_path(user), method: 'delete', form: {data: {turbo_confirm: 'Are you sure?'}} %></td>
+            </tr>
+        <% end %>
+        <tr>
+            <td colspan="7" align="center"><%= button_to "Add new User", new_mail_user_path, method: :get %></td>
+        </tr>
+    </table>
+</center>

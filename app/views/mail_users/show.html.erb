@@ -1,0 +1,26 @@
+<center>
+    <h1>User Details</h1><br>
+    <h2><%= @user.name %></h2><br>
+    <table cellpadding="14px">
+        <tr>
+            <td><b>Name : </b></td>
+            <td><%= @user.name %></td>
+        </tr>
+        <tr>
+            <td><b>Email : </b></td>
+            <td><%= @user.email %></td>
+        </tr>
+        <tr>
+            <td><b>Picture : </b></td>
+            <td>
+                <% if @user.picture? %>
+                    <p>
+                        <%= image_tag @user.picture.url(:thumb) %><br><br><br>
+                        <%= link_to "Download Image", @user.picture.url, download: 'data' %>
+                    </p>
+                <% end %>
+            </td>
+        </tr>
+    </table><br>
+    <b><%= link_to "Back", mail_users_path %></b><br><br>
+</center>
