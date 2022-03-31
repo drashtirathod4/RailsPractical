@@ -1,3 +1,3 @@
 class ArticlesCommentSerializer < ActiveModel::Serializer
-  attributes :comment
+  attributes :comment, :date_of_comment, :article_id
 end
