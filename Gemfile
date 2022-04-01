@@ -9,7 +9,13 @@ gem 'rack-cors'
 
 gem 'carrierwave'
 
+gem 'devise-jwt'
+
+gem 'figaro'
+
 gem 'active_model_serializers'
+
+gem 'pry'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.1"
